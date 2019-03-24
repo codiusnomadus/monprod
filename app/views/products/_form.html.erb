@@ -1,0 +1,79 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_status %>
+    <%= form.text_field :product_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_code %>
+    <%= form.text_field :product_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nature_type %>
+    <%= form.text_field :nature_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_start_date_sales %>
+    <%= form.text_field :product_start_date_sales %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_end_date_sales %>
+    <%= form.text_field :product_end_date_sales %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clients %>
+    <%= form.collection_check_boxes(:client_ids, Client.all, :id, :to_s) %>
+  </div>
+
+  <div class="field">
+  <p><strong>Rules:</strong></p>
+    <%= form.fields_for :rule_set  do |builder| %>
+     <table>
+       <tr>
+         <td><%= builder.label :claim_limit %></td>
+         <td><%= builder.text_field :claim_limit %></td>
+       </tr>
+       <tr>
+         <td><%= builder.label :number_of_claims_allowed %></td>
+         <td><%= builder.text_field :number_of_claims_allowed %></td>
+       </tr>
+       <tr>
+         <td><%= builder.label :post_first_claim %></td>
+         <td><%= builder.text_field :post_first_claim %></td>
+       </tr>
+       <tr>
+         <td><%= builder.label :excess_fee_for_repair %></td>
+          <td><%= builder.text_field :excess_fee_for_repair %></td>
+       </tr>
+       <tr>
+         <td><%= builder.label :excess_fee_for_replacement %></td>
+         <td><%= builder.text_field :excess_fee_for_replacement %></td>
+       </tr>
+       <tr>
+         <td><%= builder.label :excess_fee_time_limit_in_days %></td>
+         <td><%= builder.text_field :excess_fee_time_limit_in_days %></td>
+       </tr>
+     </table>
+  <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

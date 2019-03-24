@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product status:</strong>
+  <%= @product.product_status %>
+</p>
+
+<p>
+  <strong>Product code:</strong>
+  <%= @product.product_code %>
+</p>
+
+<p>
+  <strong>Nature Type:</strong>
+  <%= @product.nature_type %>
+</p>
+
+<p>
+  <strong>Product Start Date:</strong>
+  <%= @product.product_start_date_sales %>
+</p>
+
+<p>
+  <strong>Product End Date:</strong>
+  <%= @product.product_end_date_sales %>
+</p>
+
+<p>
+  <strong>Clients:</strong>
+  <ul>
+    <% @product.clients.each do |c| %>
+        <li><%= c %></li>
+    <% end %>
+    </ul>
+</p>
+
+<p>
+  <strong>Rules:</strong>
+  <p><%= @product.rule_set.claim_limit if @product.rule_set.present? %></p>
+  <p><%= @product.rule_set.number_of_claims_allowed if @product.rule_set.present? %></p>
+  <p><%= @product.rule_set.post_first_claim if @product.rule_set.present? %></p>
+  <p><%= @product.rule_set.excess_fee_for_repair if @product.rule_set.present? %></p>
+  <p><%= @product.rule_set.excess_fee_for_replacement if @product.rule_set.present? %></p>
+  <p><%= @product.rule_set.excess_fee_time_limit_in_days if @product.rule_set.present? %></p>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
